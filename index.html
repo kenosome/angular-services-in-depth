@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="ContactApp">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+		crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+
+<body>
+	<h1>My Contacts App</h1>
+	<div class="container" ng-controller="ContactCtrl as ctrl">
+		<div class="row">
+			<ul class="list-group">
+				<li style="cursor: pointer;" class="list-group-item" ng-repeat="contact in ctrl.contacts" ng-click="ctrl.selectContact($index)">
+					<img ng-src="{{contact.picture.thumbnail}}" alt="">
+					<span ng-bind="contact.name.first | uppercase"></span>
+					<span ng-bind="contact.name.last | uppercase"></span>
+				</li>
+			</ul>
+		</div>
+		<div class="row">
+			<h3>Detalles del Contacto</h3>
+			<div class="panel panel-default">
+				<div class="panel panel-body">
+					<div class="media">
+						<div class="media-left media-middle">
+							<a href="#">
+								<img class="media-object" ng-src="{{ctrl.selectedContact.picture.large}}" alt="...">
+							</a>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading"><span ng-bind="ctrl.selectedContact.name.first | uppercase"></span> <span ng-bind="ctrl.selectedContact.name.last | uppercase"></span></h4>
+							<h7>Telefono</h7>
+							<p><span ng-bind="ctrl.selectedContact.cell"></span></p>
+                            <h7>Ubicacion</h7>
+							<p><span ng-bind="ctrl.selectedContact.location.state"></span> / 
+                            <span ng-bind="ctrl.selectedContact.location.city"></span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
